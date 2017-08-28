@@ -16,8 +16,10 @@ import helloReducer from './hello/Hello.reducer';
 import HelloContainer from './hello/Hello';
 import homeReducer from './home/Home.reducer';
 import HomeContainer from './home/Home';
-import CreateTargetContainer from './CreateTarget/CreateTarget'
-import createtargetReducer from './CreateTarget/CreateTarget.reducer'
+import CreateTargetContainer from './CreateTarget/CreateTarget';
+import createtargetReducer from './CreateTarget/CreateTarget.reducer';
+import summaryReducer from './Summary/Summary.reducer';
+import SummaryContainer from './Summary/Summary';
 
 const reducer = Redux.combineReducers({
   // the hello property here corresponds to the
@@ -26,7 +28,8 @@ const reducer = Redux.combineReducers({
   // Use this pattern for each component
   hello: helloReducer,
   home: homeReducer,
-  createtarget: createtargetReducer
+  createtarget: createtargetReducer,
+  summaryInfo: summaryReducer
 });
 
 const store = Redux.createStore(
@@ -41,8 +44,9 @@ class AppLayout extends React.Component {
       <div>
         <ul className="nav">
           <li><IndexLink to="/" activeClassName="active">Home</IndexLink></li>
+          <li><Link to="/summary" activeClassName="active">Summary</Link></li>
           <li><Link to="/hello" activeClassName="active">Hello</Link></li>
-          <li><Link to="/createtarget">Create Target</Link></li>
+          <li><Link to="/createtarget" activeClassName="active">Create Target</Link></li>
         </ul>
         {this.props.children}
       </div>
@@ -56,6 +60,7 @@ ReactDOM.render(
       <Route path="/" component={AppLayout}>
         <IndexRoute component={HomeContainer}/>
         <Route path="/hello" component={HelloContainer}/>
+        <Route path="/summary" component={SummaryContainer}/>
         <Route path="/createtarget" component={CreateTargetContainer}/>
       </Route>
     </Router>

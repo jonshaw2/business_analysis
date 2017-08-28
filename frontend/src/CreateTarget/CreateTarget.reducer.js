@@ -135,8 +135,8 @@ export default function reducer(state = INITIAL_STATE, action) {
       return Object.assign({}, state,{
         contact: contactTemp
     });
-  } else if (action.type="createTarget"){
-
+  } else if (action.type==="createTarget"){
+    return state;
   }
   return state;
 }

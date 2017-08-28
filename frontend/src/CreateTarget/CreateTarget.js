@@ -16,7 +16,8 @@ class CreateTarget extends React.Component {
       secondquarterprofit:  this.props.secondquarterprofit,
       thirdquarterprofit:  this.props.thirdquarterprofit,
       fourthquarterprofit:  this.props.fourthquarterprofit,
-      contact:  this.props.contact
+      contact:  this.props.contact,
+      note: this.props.notes
 
     }
     return (

@@ -1,12 +1,35 @@
 import $ from "jquery";
-import { hashHistory } from "react-router";
+//import { hashHistory } from "react-router";
 import BASEURL from "../baseurl";
 
-export function createTarget(info){
-  console.log('creating object ', info)
+function targetRedirect(data){
+  console.log(data);
   return{
     type: "createTarget"
   }
+}
+
+function targetError(resp){
+  console.log('error:',resp);
+  return;
+}
+
+export function createTarget(info){
+  console.log('creating object ', info)
+  let asyncAction = function(dispatch){
+    $.ajax({
+      url: `${BASEURL}/api/createtarget`,
+      data: JSON.stringify({
+        data: info
+      }),
+      method: 'post',
+      dataType: 'JSON',
+      contentType: 'application/json'
+    })
+    .then(data => dispatch((targetRedirect(data))))
+    .catch(resp => dispatch(targetError(resp)))
+  };
+  return asyncAction
 }
 
 export function notesChange(notes){
