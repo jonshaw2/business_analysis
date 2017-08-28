@@ -1,0 +1,46 @@
+body {
+  margin: 0;
+  padding: 50px;
+  font-family: sans-serif;
+}
+
+ul.nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul.nav li {
+  list-style: none;
+  padding: 0 10px 0 0;
+  float: left;
+}
+
+ul.nav:before,
+ul.nav:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+ul.nav:after {
+    clear: both;
+}
+
+.active {
+  color: red;
+}
+
+#create_company{
+  padding: 3vw 15vw 3vw 15vw;
+}
+
+#create_company label{
+  display:block;
+}
+
+#create_company input{
+  width: 70vw;
+  height: 2vw;
+  font-size: 1vw;
+  margin: 1vw 0;
+}
