@@ -18,6 +18,8 @@ import homeReducer from './home/Home.reducer';
 import HomeContainer from './home/Home';
 import CreateTargetContainer from './CreateTarget/CreateTarget';
 import createtargetReducer from './CreateTarget/CreateTarget.reducer';
+import EditTargetContainer from './EditTarget/EditTarget';
+import edittargetReducer from './EditTarget/EditTarget.reducer';
 import summaryReducer from './Summary/Summary.reducer';
 import SummaryContainer from './Summary/Summary';
 
@@ -29,6 +31,7 @@ const reducer = Redux.combineReducers({
   hello: helloReducer,
   home: homeReducer,
   createtarget: createtargetReducer,
+  edittarget: edittargetReducer,
   summaryInfo: summaryReducer
 });
 
@@ -62,6 +65,7 @@ ReactDOM.render(
         <Route path="/hello" component={HelloContainer}/>
         <Route path="/summary" component={SummaryContainer}/>
         <Route path="/createtarget" component={CreateTargetContainer}/>
+        <Route path="/edittarget" component={EditTargetContainer}/>
       </Route>
     </Router>
   </ReactRedux.Provider>,
