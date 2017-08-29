@@ -1,6 +1,7 @@
 import React from 'react';
 import * as ReactRedux from 'react-redux';
 import * as actions from './Summary.actions';
+import {Link} from 'react-router'
 
 //modal dialog
 import {ModalContainer, ModalDialog} from 'react-modal-dialog';
@@ -25,6 +26,10 @@ class Summary extends React.Component {
 
 
   render() {
+
+    if (this.props.summaryInfo.companies.length !== this.props.summaryInfo.companyCount){
+      this.props.getTargets2()
+    }
     console.log("viewIndex"+this.props.summaryInfo.viewIndex)
     let companies = '';
       if (this.props.summaryInfo.companies.length > 0){
@@ -32,10 +37,17 @@ class Summary extends React.Component {
         companies = this.props.summaryInfo.companies.map((companyInfo,idx) =>
           <tr key={companyInfo.id}>
             <td>{companyInfo.name}</td>
+            <td>{companyInfo.favorite}</td>
             <td>{companyInfo.lastgrossprofit}</td>
-            <td>{companyInfo.totalassets}</td>
             <td>{companyInfo.employee}</td>
-            <td>{companyInfo.status}</td>
+            <td>
+              <select name="status" value={companyInfo.status} onChange={event=>this.props.statusChange(event.target.value, idx, companyInfo.id)}>
+                <option value="researching">Researching</option>
+                <option value="pending approval">Pending Approval</option>
+                <option value="approved">Approved</option>
+                <option value="declined">Declined</option>
+              </select>
+            </td>
             <td><div onClick={this.handleClick}> <button onClick={(event)=>{this.props.viewContact(idx);}}>View</button>
             {
               this.state.isShowingModal &&
@@ -56,7 +68,11 @@ class Summary extends React.Component {
             }
             </div></td>
 
-            <td><button className="cellButton">Click Me</button></td>
+            <td>
+              <Link className="imageAndName" to={"/summary/detail/" + companyInfo.id}>
+                <button>Click Me</button>
+              </Link>
+            </td>
             <td><button className="cellButton" onClick={(event)=>{this.props.edit(idx);}}>Edit</button></td>
             <td><div onClick={this.handleClick2}> <button onClick={(event)=>{this.props.viewContact(idx);}}>Delete</button>
             {
@@ -65,7 +81,7 @@ class Summary extends React.Component {
                 <ModalDialog onClose={this.handleClose2}>
                   <h1>Confirm Delete</h1>
                   {this.props.summaryInfo.companies[this.props.summaryInfo.viewIndex].name} <br/><br/>
-                  <button onClick={(event)=>{this.props.deleteContact(this.props.summaryInfo.companies[this.props.summaryInfo.viewIndex].id)}}>Confirm</button>
+                  <button onClick={(event)=>{this.props.deleteContact(this.props.summaryInfo.companies[this.props.summaryInfo.viewIndex].id);this.handleClose2()}}>Confirm</button>
                 </ModalDialog>
               </ModalContainer>
             }
@@ -83,8 +99,8 @@ class Summary extends React.Component {
           <tbody>
             <tr>
               <th>Name</th>
+              <th>Favorite</th>
               <th>Profit</th>
-              <th>Assets</th>
               <th>Employee</th>
               <th>Status</th>
               <th>Contacts</th>

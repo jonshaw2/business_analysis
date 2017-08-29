@@ -75,3 +75,32 @@ ul.nav:after {
 .cellCount{
   font-weight: bold;
 }
+
+.SingleSummaryContainer{
+  width: 90%;
+  margin: 0 5% 0 5%;
+}
+
+.InformationBox td{
+  border: 0px solid gray;
+  padding: 10px 0 0 10px;
+  width: 35%;
+  overflow: hidden;
+}
+
+.InformationBox{
+  float: left;
+  display: inline-block;
+  width: 30%;
+  border: 1px solid gray;
+  height: 300px;
+  min-width: 250px;
+}
+
+.GraphBox{
+  position: relative;
+  display: inline-block;
+  width: 50%;
+  height: 300px;
+  margin: 0 10px 0 10px;
+}

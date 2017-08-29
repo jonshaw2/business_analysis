@@ -22,6 +22,8 @@ import EditTargetContainer from './EditTarget/EditTarget';
 import edittargetReducer from './EditTarget/EditTarget.reducer';
 import summaryReducer from './Summary/Summary.reducer';
 import SummaryContainer from './Summary/Summary';
+import singlesummaryReducer from './SingleSummary/SingleSummary.reducer';
+import SingleSummaryContainer from './SingleSummary/SingleSummary'
 
 const reducer = Redux.combineReducers({
   // the hello property here corresponds to the
@@ -32,7 +34,8 @@ const reducer = Redux.combineReducers({
   home: homeReducer,
   createtarget: createtargetReducer,
   edittarget: edittargetReducer,
-  summaryInfo: summaryReducer
+  summaryInfo: summaryReducer,
+  singlesummary: singlesummaryReducer
 });
 
 const store = Redux.createStore(
@@ -66,6 +69,7 @@ ReactDOM.render(
         <Route path="/summary" component={SummaryContainer}/>
         <Route path="/createtarget" component={CreateTargetContainer}/>
         <Route path="/edittarget" component={EditTargetContainer}/>
+        <Route path="/summary/detail/:id" component={SingleSummaryContainer}/>
       </Route>
     </Router>
   </ReactRedux.Provider>,

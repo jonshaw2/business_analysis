@@ -85,7 +85,15 @@ app.post('/api/deletecompany', (req, resp, next) => {
     DELETE FROM companyinfo WHERE id = $1`, [id])
   }).catch(next);
 })
-
+app.post('/api/statuschange', (req, resp, next) => {
+  let id = req.body.id;
+  let status = req.body.status;
+  db.none(`UPDATE companyinfo
+    SET status = $1
+    WHERE id = $2`, [status, id])
+  .then(page => resp.json("no error"))
+  .catch(next);
+})
 
 app.get('/api/getcompanies', (req, resp, next) => {
   var data = {}
@@ -96,6 +104,25 @@ app.get('/api/getcompanies', (req, resp, next) => {
       .then(function(contactInfo){
         data.contactInfo = contactInfo;
         db.any(`select * from finance`)
+        .then(function(financeInfo){
+          data.financeInfo = financeInfo;
+          resp.json(data)
+        })
+      }).catch(next);
+    }).catch(next);
+})
+
+app.get('/api/getsummary', (req, resp, next) => {
+  var data = {}
+  let id = req.query.id
+  console.log(id)
+  db.one(`SELECT * from companyinfo where id = $1 ORDER BY UPPER(name) ASC;`, [id])
+    .then(function(companyInfo){
+      data.companyInfo = companyInfo;
+      db.any(`select * from contacts WHERE active = true AND company=$1`, [id])
+      .then(function(contactInfo){
+        data.contactInfo = contactInfo;
+        db.any(`select * from finance WHERE company=$1`,[id])
         .then(function(financeInfo){
           data.financeInfo = financeInfo;
           resp.json(data)
