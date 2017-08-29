@@ -17,6 +17,13 @@ class Summary extends React.Component {
   handleClick = () => this.setState({isShowingModal: true})
   handleClose = () => this.setState({isShowingModal: false})
 
+  state = {
+    isShowingModal2: false,
+  }
+  handleClick2 = () => this.setState({isShowingModal2: true})
+  handleClose2 = () => this.setState({isShowingModal2: false})
+
+
   render() {
     console.log("viewIndex"+this.props.summaryInfo.viewIndex)
     let companies = '';
@@ -37,11 +44,11 @@ class Summary extends React.Component {
                   <h1>Contacts</h1>
                   {this.props.summaryInfo.companies[this.props.summaryInfo.viewIndex].contact.map((info, idx2) =>
                     <div key={idx2}>
-                    <h4>Contact {idx2+1}</h4>
+                    <span className="cellCount">Contact {idx2+1}</span><br/>
                     <span>Name: {info.contact_name}</span><br/>
                     <span>Phone: {info.contact_phone}</span><br/>
                     <span>Email: {info.contact_email}</span><br/>
-                    <span>Title: {info.contact_title}</span><br/>
+                    <span>Title: {info.contact_title}</span><br/><br/>
                     </div>
                   )}
                 </ModalDialog>
@@ -51,7 +58,18 @@ class Summary extends React.Component {
 
             <td><button className="cellButton">Click Me</button></td>
             <td><button className="cellButton" onClick={(event)=>{this.props.edit(idx);}}>Edit</button></td>
-            <td><button className="cellButton">Delete</button></td>
+            <td><div onClick={this.handleClick2}> <button onClick={(event)=>{this.props.viewContact(idx);}}>Delete</button>
+            {
+              this.state.isShowingModal2 &&
+              <ModalContainer onClose={this.handleClose2}>
+                <ModalDialog onClose={this.handleClose2}>
+                  <h1>Confirm Delete</h1>
+                  {this.props.summaryInfo.companies[this.props.summaryInfo.viewIndex].name} <br/><br/>
+                  <button onClick={(event)=>{this.props.deleteContact(this.props.summaryInfo.companies[this.props.summaryInfo.viewIndex].id)}}>Confirm</button>
+                </ModalDialog>
+              </ModalContainer>
+            }
+            </div></td>
           </tr>
         )
 

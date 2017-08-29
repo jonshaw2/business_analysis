@@ -25,6 +25,24 @@ function targetError(resp){
   let error = (resp && resp.responseJSON && resp.responseJSON.message) || 'Something went wrong!';
   console.log(error);
 }
+export function deleteContact(idx){
+  console.log('in deleteContact')
+  let asyncAction = function(dispatch){
+    $.ajax({
+      url: `${BASEURL}/api/deletecompany`,
+      data: JSON.stringify({
+        idx: idx
+      }),
+      method: 'post',
+      dataType: 'JSON',
+      contentType: 'application/json'
+    })
+    .then(data => dispatch(getTargets()))
+    .catch(resp => dispatch(targetError(resp)))
+  };
+  return asyncAction
+}
+
 export function viewContact(idx){
   console.log(idx)
   return{type: 'contactIdx', idx: idx}

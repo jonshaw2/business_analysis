@@ -5,7 +5,7 @@ import * as actions from './EditTarget.action';
 class EditTarget extends React.Component {
 
   componentDidMount() {
-    this.props.initialize();
+    this.props.initialize(this.props.summaryInfo.editInfo);
   }
 
   render() {
@@ -22,7 +22,8 @@ class EditTarget extends React.Component {
       thirdquarterprofit:  this.props.EditTarget.thirdquarterprofit,
       fourthquarterprofit:  this.props.EditTarget.fourthquarterprofit,
       contact:  this.props.EditTarget.contact,
-      note: this.props.EditTarget.notes
+      note: this.props.EditTarget.notes,
+      id: this.props.summaryInfo.editInfo.id
       }
 
 
@@ -74,16 +75,16 @@ class EditTarget extends React.Component {
           <div key={idx}>
             <span>Contact {idx+1} :</span><br/>
             <label>Name</label>
-            <input type="text" value={contact.name} onChange={(event)=>this.props.contactNameChange(event.target.value,idx)}/>
+            <input type="text" value={contact.contact_name} onChange={(event)=>this.props.contactNameChange(event.target.value,idx)}/>
 
             <label>Phone:</label>
-            <input value={contact.phone} onChange={event=>this.props.contactPhoneChange(event.target.value,idx)}/>
+            <input type="text" value={contact.contact_phone} onChange={event=>this.props.contactPhoneChange(event.target.value,idx)}/>
 
             <label>Email:</label>
-            <input type="text" value={contact.email} onChange={event=>this.props.contactEmailChange(event.target.value,idx)}/>
+            <input type="text" value={contact.contact_email} onChange={event=>this.props.contactEmailChange(event.target.value,idx)}/>
 
             <label>Title:</label>
-            <input type="text" value={contact.title} onChange={event=>this.props.contactTitleChange(event.target.value,idx)}/>
+            <input type="text" value={contact.contact_title} onChange={event=>this.props.contactTitleChange(event.target.value,idx)}/>
 
             <br/><br/>
           </div>

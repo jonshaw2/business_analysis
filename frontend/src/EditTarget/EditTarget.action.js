@@ -13,9 +13,10 @@ function targetError(resp){
   console.log('error:',resp);
   return;
 }
-export function initialize(){
+export function initialize(payload){
   return{
-    type: "initialize"
+    type: "initialize",
+    payload: payload
   }
 }
 

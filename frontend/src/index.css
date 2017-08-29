@@ -71,3 +71,7 @@ ul.nav:after {
   display: block;
   margin: auto;
 }
+
+.cellCount{
+  font-weight: bold;
+}

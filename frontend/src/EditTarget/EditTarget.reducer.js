@@ -1,30 +1,23 @@
 const INITIAL_STATE = {
-  companyname:'googles',
-  industry:'manufacturing',
-  grossprofit:100,
-  totalassets:200,
-  employee:300,
-  website:'http://google.com',
-  notes:'something other information about this company',
+  companyname:'',
+  industry:'',
+  grossprofit:0,
+  totalassets:0,
+  employee:0,
+  website:'',
+  notes:'',
 
-  firstquarterprofit:100,
-  secondquarterprofit:200,
-  thirdquarterprofit:300,
-  fourthquarterprofit:400,
+  firstquarterprofit:0,
+  secondquarterprofit:0,
+  thirdquarterprofit:0,
+  fourthquarterprofit:0,
 
   contact:[{
-    name: 'bob dough',
-    phone: '123-456-7890',
-    email: 'bob.dough@gmail.com',
-    title: 'hobo'},
-    {
-      name: 'steve',
-      phone: '098-765-4321',
-      email: 'something',
-      title: 'hard working one'
-
-
-  }]
+    name: '',
+    phone: '',
+    email: '',
+    title: ''},
+    ]
   // put properties you need here
 };
 
@@ -39,7 +32,21 @@ export default function reducer(state = INITIAL_STATE, action) {
     })
 
   }else if (action.type=== 'initialize'){
-    return state;
+    console.log(action.payload)
+    return Object.assign({}, state, {
+      companyname: action.payload.name,
+      industry:action.payload.industry,
+      grossprofit:action.payload.lastgrossprofit,
+      totalassets:action.payload.totalassets,
+      employee:action.payload.employee,
+      website:action.payload.website,
+      notes:action.payload.description,
+      firstquarterprofit:action.payload.financeInfo.firstquarterprofit,
+      secondquarterprofit:action.payload.financeInfo.secondquarterprofit,
+      thirdquarterprofit:action.payload.financeInfo.thirdquarterprofit,
+      fourthquarterprofit:action.payload.financeInfo.fourthquarterprofit,
+      contact:action.payload.contact
+    });
 
   }else  if (action.type === 'industryChange'){
       console.log('in action')
@@ -95,28 +102,28 @@ export default function reducer(state = INITIAL_STATE, action) {
   } else  if (action.type === 'contactNameChange'){
       console.log('in action')
       let contactTemp = state.contact.map(contact=>contact)
-      contactTemp[action.index].name = action.name
+      contactTemp[action.index].contact_name = action.name
       return Object.assign({}, state, {
         contact: contactTemp
     })
   } else  if (action.type === 'contactPhoneChange'){
       console.log('in action')
       let contactTemp = state.contact.map(contact=>contact)
-      contactTemp[action.index].phone = action.phone
+      contactTemp[action.index].contact_phone = action.phone
       return Object.assign({}, state, {
         contact: contactTemp
     })
   } else  if (action.type === 'contactEmailChange'){
       console.log('in action')
       let contactTemp = state.contact.map(contact=>contact)
-      contactTemp[action.index].email = action.email
+      contactTemp[action.index].contact_email = action.email
       return Object.assign({}, state, {
         contact: contactTemp
     })
   } else  if (action.type === 'contactTitleChange'){
       console.log('in action')
       let contactTemp = state.contact.map(contact=>contact)
-      contactTemp[action.index].title = action.title
+      contactTemp[action.index].contact_title = action.title
       return Object.assign({}, state, {
         contact: contactTemp
     })
