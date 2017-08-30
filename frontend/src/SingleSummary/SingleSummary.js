@@ -17,8 +17,6 @@ class SingleSummary extends React.Component {
   }
   render() {
 
-    let chart = ''
-
     var chartInfo = []
     let chartData = {}
 
@@ -26,7 +24,7 @@ class SingleSummary extends React.Component {
     console.log(chartInfo);
     console.log(this.props.SingleSummary);
     if (this.props.SingleSummary.companies !== '' ){
-      if (this.props.SingleSummary.companies.id === parseInt(this.props.params.id)){
+      if (this.props.SingleSummary.companies.id === parseInt(this.props.params.id, 10)){
         chartData = {
             chart: {
               caption: "Quarterly Profit",
@@ -80,10 +78,10 @@ class SingleSummary extends React.Component {
           </div>
           <div className="GraphBox">
             <ReactFC
-            type = "Column2D"
-            className = "fc-column2d"  // ReactJS attribute-name for DOM classes
-            dataFormat = "JSON"
-            dataSource = {chartData}/>
+            type="Column2D"
+            className="fc-column2d"  // ReactJS attribute-name for DOM classes
+            dataFormat="JSON"
+            dataSource={chartData}/>
           </div>
 
         </div>

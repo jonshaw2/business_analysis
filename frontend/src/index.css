@@ -120,4 +120,16 @@ ul.nav:after {
   border: 1px solid black;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+
+}
+.FilterOptionContainer input{
+  text-align: center;
+}
+
+
+
+.nameFilterInput input{
+  width: 200px;
+  border: 1px solid black;
+  text-align: center;
 }

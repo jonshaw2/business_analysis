@@ -9,6 +9,11 @@ const INITIAL_STATE = {
   filterWatch: 'any',
   filterStatus: 'any',
   filterFavorite: 'any',
+  profitMin: '',
+  profitMax: '',
+  employeeMin: '',
+  employeeMax: '',
+  filterName: ''
   // put properties you need here
 };
 
@@ -19,7 +24,38 @@ export default function reducer(state = INITIAL_STATE, action) {
     return Object.assign({}, state, {
       companies: action.payload,
       companyCount: companycount
-
+    })
+  } else if(action.type==="editProfitMin"){
+    return Object.assign({}, state, {
+      profitMin: action.status,
+    })
+  } else if(action.type==="editProfitMax"){
+    return Object.assign({}, state, {
+      profitMax: action.status,
+    })
+  } else if(action.type==="editEmployeeMin"){
+    return Object.assign({}, state, {
+      employeeMin: action.status,
+    })
+  } else if(action.type==="editEmployeeMax"){
+    return Object.assign({}, state, {
+      employeeMax: action.status,
+    })
+  } else if(action.type==="editFilterWatch"){
+    return Object.assign({}, state, {
+      filterWatch: action.status,
+    })
+  } else if(action.type==="editFilterFavorite"){
+    return Object.assign({}, state, {
+      filterFavorite: action.status,
+    })
+  } else if(action.type==="editFilterStatus"){
+    return Object.assign({}, state, {
+      filterStatus: action.status,
+    })
+  } else if(action.type==="editFilterName"){
+    return Object.assign({}, state, {
+      filterName: action.status
     })
   } else if(action.type==="initializeTables2"){
     return Object.assign({}, state, {

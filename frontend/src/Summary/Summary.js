@@ -35,16 +35,25 @@ class Summary extends React.Component {
     // }
       filteroptions =
       <div className="FilterOptionContainer">
-        <tr>
-           <td>Profit (2016):</td>
-           <td> <input type="number" placeholder="min"/></td>
-          <td><input type="number" placeholder="max"/></td>
-        </tr>
-        <tr>
-           <td>Employee:</td>
-           <td><input type="number" placeholder="min"/></td>
-          <td><input type="number" placeholder="max"/></td>
-        </tr>
+        <div className="nameFilterInput">
+          Company Name: <input onChange={event=>this.props.filterName(event.target.value)} value={this.props.summaryInfo.filterName}type="text" placeholder="Input Company Name Here"/>
+        </div>
+        <table>
+          <tbody>
+            <tr>
+               <td>Profit (2016):</td>
+               <td> <input type="number" onChange={event=>this.props.profitminChange(event.target.value)} value={this.props.summaryInfo.profitMin} placeholder="min"/></td>
+              <td><input type="number" onChange={event=>this.props.profitmaxChange(event.target.value)} value={this.props.summaryInfo.profitMax} placeholder="max"/></td>
+            </tr>
+          </tbody>
+          <tbody>
+            <tr>
+               <td>Employee:</td>
+               <td><input type="number" onChange={event=>this.props.employeeminChange(event.target.value)} value={this.props.summaryInfo.employeeMin} placeholder="min"/></td>
+              <td><input type="number" onChange={event=>this.props.profitmaxChange(event.target.value)} value={this.props.summaryInfo.employeeMin} placeholder="max"/></td>
+            </tr>
+          </tbody>
+        </table>
         Watch:<select value={this.props.summaryInfo.filterWatch} onChange={event=>this.props.filterWatch(event.target.value)}>
           <option value="any">any</option>
           <option value="Y">Y</option>
@@ -72,11 +81,13 @@ class Summary extends React.Component {
     if (this.props.summaryInfo.companies.length !== this.props.summaryInfo.companyCount){
       this.props.getTargets2()
     }
-    console.log("viewIndex"+this.props.summaryInfo.viewIndex)
     let companies = '';
+    let companiesFilter = '';
       if (this.props.summaryInfo.companies.length > 0){
-        console.log(this.props.summaryInfo.companies);
-        companies = this.props.summaryInfo.companies.map((companyInfo,idx) =>
+        companiesFilter = this.props.summaryInfo.companies;
+
+
+        companies = companiesFilter.map((companyInfo,idx) =>
           <tr key={companyInfo.id}>
             <td><button onClick={(event)=>{this.props.watchChange(companyInfo.watch,idx, companyInfo.id);}}>{companyInfo.watch}</button></td>
             <td>{companyInfo.name}</td>

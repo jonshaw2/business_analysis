@@ -17,7 +17,6 @@ function targetInfo(data){
       }
     }
   }
-  console.log(tempData);
   return{type: 'initializeTables', payload: tempData};
 }
 function targetInfo2(data){
@@ -35,7 +34,6 @@ function targetInfo2(data){
       }
     }
   }
-  console.log(tempData);
   return{type: 'initializeTables2', payload: tempData};
 }
 
@@ -44,7 +42,6 @@ function targetError(resp){
   console.log(error);
 }
 function updated(){
-  console.log('in updated')
   return{type: "renderUpdate"};
 }
 
@@ -62,7 +59,6 @@ function favoriteUpdate(index, status){
 }
 
 export function deleteContact(idx){
-  console.log('in deleteContact')
   let asyncAction = function(dispatch){
     $.ajax({
       url: `${BASEURL}/api/deletecompany`,
@@ -79,7 +75,6 @@ export function deleteContact(idx){
 }
 
 export function viewContact(idx){
-  console.log(idx)
   return{type: 'contactIdx', idx: idx}
 }
 
@@ -127,6 +122,32 @@ export function watchChange(status, index, companyID){
   return asyncAction
 }
 
+export function profitminChange(status){
+  return{type: "editProfitMin", status:status};
+}
+export function profitmaxChange(status){
+  return{type: "editProfitMax", status:status};
+}
+export function employeeminChange(status){
+  return{type: "editEmployeeMin", status:status};
+}
+export function employemaxChange(status){
+  return{type: "editEmployeeMax", status:status};
+}
+export function filterWatch(status){
+  return{type: "editFilterWatch", status:status};
+}
+export function filterFavorite(status){
+  return{type: "editFilterFavorite", status:status};
+}
+export function filterStatus(status){
+  return{type: "editFilterStatus", status:status};
+}
+export function filterName(status){
+  return{type: "editFilterName", status:status};
+}
+
+
 export function favoriteChange(status, index, companyID){
   if(status === 'N'){
     status = 'Y'
@@ -152,7 +173,6 @@ export function favoriteChange(status, index, companyID){
 }
 
 export function getTargets(){
-  console.log('in getTargets');
   let asyncAction = function(dispatch){
     $.ajax({
       url: `${BASEURL}/api/getcompanies`,
@@ -167,7 +187,6 @@ export function getTargets(){
 }
 
 export function getTargets2(){
-  console.log('in getTargets2');
   let asyncAction = function(dispatch){
     $.ajax({
       url: `${BASEURL}/api/getcompanies`,
