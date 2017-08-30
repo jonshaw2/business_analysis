@@ -85,6 +85,84 @@ class Summary extends React.Component {
     let companiesFilter = '';
       if (this.props.summaryInfo.companies.length > 0){
         companiesFilter = this.props.summaryInfo.companies;
+        //filtering profit min
+        if(this.props.summaryInfo.profitMin !== ''){
+          let tempArray = []
+          for(let i = 0; i<companiesFilter.length;i++){
+            if(companiesFilter[i].lastgrossprofit >= this.props.summaryInfo.profitMin)
+            tempArray.push(companiesFilter[i])
+          }
+          companiesFilter = tempArray;
+
+        }
+        //filtering profit max
+        if(this.props.summaryInfo.profitMax !== ''){
+          let tempArray = []
+          for(let i = 0; i<companiesFilter.length;i++){
+            if(companiesFilter[i].lastgrossprofit <= this.props.summaryInfo.profitMax)
+            tempArray.push(companiesFilter[i])
+          }
+          companiesFilter = tempArray;
+
+        }
+        //filtering employee min
+        if(this.props.summaryInfo.employeeMin !== ''){
+          let tempArray = []
+          for(let i = 0; i<companiesFilter.length;i++){
+            if(companiesFilter[i].employee >= this.props.summaryInfo.employeeMin)
+            tempArray.push(companiesFilter[i])
+          }
+          companiesFilter = tempArray;
+
+        }
+        //filtering employee max
+        if(this.props.summaryInfo.employeeMax !== ''){
+          let tempArray = []
+          for(let i = 0; i<companiesFilter.length;i++){
+            if(companiesFilter[i].employee <= this.props.summaryInfo.employeeMax)
+            tempArray.push(companiesFilter[i])
+          }
+          companiesFilter = tempArray;
+
+        }
+        //filtering watch status
+        if(this.props.summaryInfo.filterWatch !== 'any'){
+          let tempArray = []
+          for(let i = 0; i<companiesFilter.length;i++){
+            if(companiesFilter[i].watch === this.props.summaryInfo.filterWatch)
+            tempArray.push(companiesFilter[i])
+          }
+          companiesFilter = tempArray;
+        }
+        //filtering favorite status
+        if(this.props.summaryInfo.filterFavorite !== 'any'){
+          let tempArray = []
+          for(let i = 0; i<companiesFilter.length;i++){
+            if(companiesFilter[i].favorite === this.props.summaryInfo.filterFavorite)
+            tempArray.push(companiesFilter[i])
+          }
+          companiesFilter = tempArray;
+        }
+        //filtering status status
+        if(this.props.summaryInfo.filterStatus !== 'any'){
+          let tempArray = []
+          for(let i = 0; i<companiesFilter.length;i++){
+            if(companiesFilter[i].status === this.props.summaryInfo.filterStatus)
+            tempArray.push(companiesFilter[i])
+          }
+          companiesFilter = tempArray;
+        }
+        //filtering name
+        if(this.props.summaryInfo.filterName !== ''){
+          let tempArray = []
+          for(let i = 0; i<companiesFilter.length;i++){
+            if(companiesFilter[i].name.toUpperCase().indexOf(this.props.summaryInfo.filterName.toUpperCase()) !== -1)
+            tempArray.push(companiesFilter[i])
+          }
+          companiesFilter = tempArray;
+
+        }
+
 
 
         companies = companiesFilter.map((companyInfo,idx) =>
