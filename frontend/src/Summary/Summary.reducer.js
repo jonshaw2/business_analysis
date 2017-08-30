@@ -4,7 +4,6 @@ const INITIAL_STATE = {
   editInfo: {},
   status: "Researching",
   needRender : true,
-  filtercompanies: [],
   fil: false,
   filterWatch: 'any',
   filterStatus: 'any',
@@ -13,7 +12,8 @@ const INITIAL_STATE = {
   profitMax: '',
   employeeMin: '',
   employeeMax: '',
-  filterName: ''
+  filterName: '',
+  companyFilter: []
   // put properties you need here
 };
 
@@ -23,43 +23,54 @@ export default function reducer(state = INITIAL_STATE, action) {
     let companycount = action.payload.length
     return Object.assign({}, state, {
       companies: action.payload,
-      companyCount: companycount
+      companyCount: companycount,
+      companyFilter: action.companyFilter
     })
   } else if(action.type==="editProfitMin"){
     return Object.assign({}, state, {
       profitMin: action.status,
+      companyFilter: action.companyFilter
     })
   } else if(action.type==="editProfitMax"){
     return Object.assign({}, state, {
       profitMax: action.status,
+      companyFilter: action.companyFilter
     })
   } else if(action.type==="editEmployeeMin"){
     return Object.assign({}, state, {
       employeeMin: action.status,
+      companyFilter: action.companyFilter
     })
   } else if(action.type==="editEmployeeMax"){
     return Object.assign({}, state, {
       employeeMax: action.status,
+      companyFilter: action.companyFilter
     })
   } else if(action.type==="editFilterWatch"){
     return Object.assign({}, state, {
       filterWatch: action.status,
+      companyFilter: action.companyFilter
     })
   } else if(action.type==="editFilterFavorite"){
     return Object.assign({}, state, {
       filterFavorite: action.status,
+      companyFilter: action.companyFilter
     })
   } else if(action.type==="editFilterStatus"){
     return Object.assign({}, state, {
       filterStatus: action.status,
+      companyFilter: action.companyFilter
     })
   } else if(action.type==="editFilterName"){
+    console.log('in name');
     return Object.assign({}, state, {
-      filterName: action.status
+      filterName: action.status,
+      companyFilter: action.companyFilter
     })
   } else if(action.type==="initializeTables2"){
     return Object.assign({}, state, {
       companies: action.payload,
+      companyFilter: action.companyFilter
     })
   } else if(action.type==="contactIdx"){
     return Object.assign({}, state,{
@@ -68,6 +79,10 @@ export default function reducer(state = INITIAL_STATE, action) {
   } else if(action.type==="editInfo"){
     return Object.assign({}, state,{
       editInfo: state.companies[action.idx]
+    })
+  } else if(action.type==="updateFilter"){
+    return Object.assign({}, state,{
+      companiesFilter: action.status
     })
   } else if(action.type==="editStatus"){
       let companiesTemp = state.companies.map(companies=>companies)
@@ -94,7 +109,6 @@ export default function reducer(state = INITIAL_STATE, action) {
     return Object.assign({}, state, {
       companyCount: companyCount
     })
-    return state
   }
   // add if statements to catch specific actions
   // to return different new state from previous state

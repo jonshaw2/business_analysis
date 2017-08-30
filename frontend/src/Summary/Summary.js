@@ -9,7 +9,14 @@ import {ModalContainer, ModalDialog} from 'react-modal-dialog';
 class Summary extends React.Component {
 
   componentDidMount(){
-    this.props.getTargets()
+    this.props.getTargets(this.props.summaryInfo.profitMin,
+    this.props.summaryInfo.profitMax,
+    this.props.summaryInfo.employeeMin,
+    this.props.summaryInfo.employeeMax,
+    this.props.summaryInfo.filterName,
+    this.props.summaryInfo.filterWatch,
+    this.props.summaryInfo.filterStatus,
+    this.props.summaryInfo.filterFavorite)
   }
 
   state = {
@@ -36,35 +43,115 @@ class Summary extends React.Component {
       filteroptions =
       <div className="FilterOptionContainer">
         <div className="nameFilterInput">
-          Company Name: <input onChange={event=>this.props.filterName(event.target.value)} value={this.props.summaryInfo.filterName}type="text" placeholder="Input Company Name Here"/>
+          Company Name: <input onChange={event=>this.props.filterName(
+            event.target.value,
+            this.props.summaryInfo.profitMin,
+            this.props.summaryInfo.profitMax,
+            this.props.summaryInfo.employeeMin,
+            this.props.summaryInfo.employeeMax,
+            this.props.summaryInfo.filterName,
+            this.props.summaryInfo.filterWatch,
+            this.props.summaryInfo.filterStatus,
+            this.props.summaryInfo.filterFavorite,
+            this.props.summaryInfo.companies)} value={this.props.summaryInfo.filterName}type="text" placeholder="Input Company Name Here"/>
         </div>
         <table>
           <tbody>
             <tr>
                <td>Profit (2016):</td>
-               <td> <input type="number" onChange={event=>this.props.profitminChange(event.target.value)} value={this.props.summaryInfo.profitMin} placeholder="min"/></td>
-              <td><input type="number" onChange={event=>this.props.profitmaxChange(event.target.value)} value={this.props.summaryInfo.profitMax} placeholder="max"/></td>
+               <td> <input type="number" onChange={event=>this.props.profitminChange(
+                 event.target.value,
+                 this.props.summaryInfo.profitMin,
+                 this.props.summaryInfo.profitMax,
+                 this.props.summaryInfo.employeeMin,
+                 this.props.summaryInfo.employeeMax,
+                 this.props.summaryInfo.filterName,
+                 this.props.summaryInfo.filterWatch,
+                 this.props.summaryInfo.filterStatus,
+                 this.props.summaryInfo.filterFavorite,
+                 this.props.summaryInfo.companies)} value={this.props.summaryInfo.profitMin} placeholder="min"/></td>
+              <td><input type="number" onChange={event=>this.props.profitmaxChange(
+                event.target.value,
+                this.props.summaryInfo.profitMin,
+                this.props.summaryInfo.profitMax,
+                this.props.summaryInfo.employeeMin,
+                this.props.summaryInfo.employeeMax,
+                this.props.summaryInfo.filterName,
+                this.props.summaryInfo.filterWatch,
+                this.props.summaryInfo.filterStatus,
+                this.props.summaryInfo.filterFavorite,
+                this.props.summaryInfo.companies)} value={this.props.summaryInfo.profitMax} placeholder="max"/></td>
             </tr>
           </tbody>
           <tbody>
             <tr>
                <td>Employee:</td>
-               <td><input type="number" onChange={event=>this.props.employeeminChange(event.target.value)} value={this.props.summaryInfo.employeeMin} placeholder="min"/></td>
-              <td><input type="number" onChange={event=>this.props.profitmaxChange(event.target.value)} value={this.props.summaryInfo.employeeMin} placeholder="max"/></td>
+               <td><input type="number" onChange={event=>this.props.employeeminChange(
+                 event.target.value,
+                 this.props.summaryInfo.profitMin,
+                 this.props.summaryInfo.profitMax,
+                 this.props.summaryInfo.employeeMin,
+                 this.props.summaryInfo.employeeMax,
+                 this.props.summaryInfo.filterName,
+                 this.props.summaryInfo.filterWatch,
+                 this.props.summaryInfo.filterStatus,
+                 this.props.summaryInfo.filterFavorite,
+                 this.props.summaryInfo.companies)} value={this.props.summaryInfo.employeeMin} placeholder="min"/></td>
+              <td><input type="number" onChange={event=>this.props.employeemaxChange(
+                event.target.value,
+                this.props.summaryInfo.profitMin,
+                this.props.summaryInfo.profitMax,
+                this.props.summaryInfo.employeeMin,
+                this.props.summaryInfo.employeeMax,
+                this.props.summaryInfo.filterName,
+                this.props.summaryInfo.filterWatch,
+                this.props.summaryInfo.filterStatus,
+                this.props.summaryInfo.filterFavorite,
+                this.props.summaryInfo.companies)} value={this.props.summaryInfo.employeeMax} placeholder="max"/></td>
             </tr>
           </tbody>
         </table>
-        Watch:<select value={this.props.summaryInfo.filterWatch} onChange={event=>this.props.filterWatch(event.target.value)}>
+        Watch:<select value={this.props.summaryInfo.filterWatch} onChange={event=>this.props.filterWatch(
+          event.target.value,
+          this.props.summaryInfo.profitMin,
+          this.props.summaryInfo.profitMax,
+          this.props.summaryInfo.employeeMin,
+          this.props.summaryInfo.employeeMax,
+          this.props.summaryInfo.filterName,
+          this.props.summaryInfo.filterWatch,
+          this.props.summaryInfo.filterStatus,
+          this.props.summaryInfo.filterFavorite,
+          this.props.summaryInfo.companies)}>
           <option value="any">any</option>
           <option value="Y">Y</option>
           <option value="N">N</option>
         </select>
-        Favorite:<select value={this.props.summaryInfo.filterFavorite} onChange={event=>this.props.filterFavorite(event.target.value)}>
+        Favorite:<select value={this.props.summaryInfo.filterFavorite} onChange={event=>this.props.filterFavorite(
+          event.target.value,
+          this.props.summaryInfo.profitMin,
+          this.props.summaryInfo.profitMax,
+          this.props.summaryInfo.employeeMin,
+          this.props.summaryInfo.employeeMax,
+          this.props.summaryInfo.filterName,
+          this.props.summaryInfo.filterWatch,
+          this.props.summaryInfo.filterStatus,
+          this.props.summaryInfo.filterFavorite,
+          this.props.summaryInfo.companies)}>
           <option value="any">any</option>
           <option value="Y">Y</option>
           <option value="N">N</option>
         </select>
-        Status:<select value={this.props.summaryInfo.filterStatus} onChange={event=>this.props.filterStatus(event.target.value)}>
+        Status:<select value={this.props.summaryInfo.filterStatus} onChange={event=>this.props.filterStatus(
+          event.target.value,
+          this.props.summaryInfo.profitMin,
+          this.props.summaryInfo.profitMax,
+          this.props.summaryInfo.employeeMin,
+          this.props.summaryInfo.employeeMax,
+          this.props.summaryInfo.filterName,
+          this.props.summaryInfo.filterWatch,
+          this.props.summaryInfo.filterStatus,
+          this.props.summaryInfo.filterFavorite,
+          this.props.summaryInfo.companies)}>
           <option value="any">any</option>
           <option value="researching">Researching</option>
           <option value="pending approval">Pending Approval</option>
@@ -79,89 +166,19 @@ class Summary extends React.Component {
 
 
     if (this.props.summaryInfo.companies.length !== this.props.summaryInfo.companyCount){
-      this.props.getTargets2()
+      this.props.getTargets2(this.props.summaryInfo.profitMin,
+      this.props.summaryInfo.profitMax,
+      this.props.summaryInfo.employeeMin,
+      this.props.summaryInfo.employeeMax,
+      this.props.summaryInfo.filterName,
+      this.props.summaryInfo.filterWatch,
+      this.props.summaryInfo.filterStatus,
+      this.props.summaryInfo.filterFavorite)
     }
     let companies = '';
     let companiesFilter = '';
       if (this.props.summaryInfo.companies.length > 0){
-        companiesFilter = this.props.summaryInfo.companies;
-        //filtering profit min
-        if(this.props.summaryInfo.profitMin !== ''){
-          let tempArray = []
-          for(let i = 0; i<companiesFilter.length;i++){
-            if(companiesFilter[i].lastgrossprofit >= this.props.summaryInfo.profitMin)
-            tempArray.push(companiesFilter[i])
-          }
-          companiesFilter = tempArray;
-
-        }
-        //filtering profit max
-        if(this.props.summaryInfo.profitMax !== ''){
-          let tempArray = []
-          for(let i = 0; i<companiesFilter.length;i++){
-            if(companiesFilter[i].lastgrossprofit <= this.props.summaryInfo.profitMax)
-            tempArray.push(companiesFilter[i])
-          }
-          companiesFilter = tempArray;
-
-        }
-        //filtering employee min
-        if(this.props.summaryInfo.employeeMin !== ''){
-          let tempArray = []
-          for(let i = 0; i<companiesFilter.length;i++){
-            if(companiesFilter[i].employee >= this.props.summaryInfo.employeeMin)
-            tempArray.push(companiesFilter[i])
-          }
-          companiesFilter = tempArray;
-
-        }
-        //filtering employee max
-        if(this.props.summaryInfo.employeeMax !== ''){
-          let tempArray = []
-          for(let i = 0; i<companiesFilter.length;i++){
-            if(companiesFilter[i].employee <= this.props.summaryInfo.employeeMax)
-            tempArray.push(companiesFilter[i])
-          }
-          companiesFilter = tempArray;
-
-        }
-        //filtering watch status
-        if(this.props.summaryInfo.filterWatch !== 'any'){
-          let tempArray = []
-          for(let i = 0; i<companiesFilter.length;i++){
-            if(companiesFilter[i].watch === this.props.summaryInfo.filterWatch)
-            tempArray.push(companiesFilter[i])
-          }
-          companiesFilter = tempArray;
-        }
-        //filtering favorite status
-        if(this.props.summaryInfo.filterFavorite !== 'any'){
-          let tempArray = []
-          for(let i = 0; i<companiesFilter.length;i++){
-            if(companiesFilter[i].favorite === this.props.summaryInfo.filterFavorite)
-            tempArray.push(companiesFilter[i])
-          }
-          companiesFilter = tempArray;
-        }
-        //filtering status status
-        if(this.props.summaryInfo.filterStatus !== 'any'){
-          let tempArray = []
-          for(let i = 0; i<companiesFilter.length;i++){
-            if(companiesFilter[i].status === this.props.summaryInfo.filterStatus)
-            tempArray.push(companiesFilter[i])
-          }
-          companiesFilter = tempArray;
-        }
-        //filtering name
-        if(this.props.summaryInfo.filterName !== ''){
-          let tempArray = []
-          for(let i = 0; i<companiesFilter.length;i++){
-            if(companiesFilter[i].name.toUpperCase().indexOf(this.props.summaryInfo.filterName.toUpperCase()) !== -1)
-            tempArray.push(companiesFilter[i])
-          }
-          companiesFilter = tempArray;
-
-        }
+        companiesFilter = this.props.summaryInfo.companyFilter;
 
 
 
