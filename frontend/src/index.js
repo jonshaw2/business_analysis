@@ -12,8 +12,8 @@ import ReduxThunk from 'redux-thunk';
 import { Router, Route, Link, IndexLink, IndexRoute, hashHistory } from 'react-router';
 
 // import all components and their reducers here
-import helloReducer from './hello/Hello.reducer';
-import HelloContainer from './hello/Hello';
+import groupcompareReducer from './GroupCompare/GroupCompare.reducer';
+import GroupCompareContainer from './GroupCompare/GroupCompare';
 import homeReducer from './home/Home.reducer';
 import HomeContainer from './home/Home';
 import CreateTargetContainer from './CreateTarget/CreateTarget';
@@ -30,12 +30,12 @@ const reducer = Redux.combineReducers({
   // state => state.hello line - argument of
   // ReactRedux.connect in hello/Hello.js
   // Use this pattern for each component
-  hello: helloReducer,
   home: homeReducer,
   createtarget: createtargetReducer,
   edittarget: edittargetReducer,
   summaryInfo: summaryReducer,
-  singlesummary: singlesummaryReducer
+  singlesummary: singlesummaryReducer,
+  groupcompare: groupcompareReducer
 });
 
 const store = Redux.createStore(
@@ -51,7 +51,7 @@ class AppLayout extends React.Component {
         <ul className="nav">
           <li><IndexLink to="/" activeClassName="active">Home</IndexLink></li>
           <li><Link to="/summary" activeClassName="active">Summary</Link></li>
-          <li><Link to="/hello" activeClassName="active">Hello</Link></li>
+          <li><Link to="/groupcompare" activeClassName="active">Hello</Link></li>
           <li><Link to="/createtarget" activeClassName="active">Create Target</Link></li>
         </ul>
         {this.props.children}
@@ -65,7 +65,7 @@ ReactDOM.render(
     <Router history={hashHistory}>
       <Route path="/" component={AppLayout}>
         <IndexRoute component={HomeContainer}/>
-        <Route path="/hello" component={HelloContainer}/>
+        <Route path="/groupcompare" component={GroupCompareContainer}/>
         <Route path="/summary" component={SummaryContainer}/>
         <Route path="/createtarget" component={CreateTargetContainer}/>
         <Route path="/edittarget" component={EditTargetContainer}/>

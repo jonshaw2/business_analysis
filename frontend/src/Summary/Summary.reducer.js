@@ -3,7 +3,12 @@ const INITIAL_STATE = {
   viewIndex: 0,
   editInfo: {},
   status: "Researching",
-  needRender : true
+  needRender : true,
+  filtercompanies: [],
+  fil: false,
+  filterWatch: 'any',
+  filterStatus: 'any',
+  filterFavorite: 'any',
   // put properties you need here
 };
 
@@ -34,7 +39,19 @@ export default function reducer(state = INITIAL_STATE, action) {
       return Object.assign({}, state, {
         companies: companiesTemp
     })
-  } else if(action.type==="renderUpdate"){
+  } else if(action.type==="editWatch"){
+      let companiesTemp = state.companies.map(companies=>companies)
+      companiesTemp[action.index].watch = action.status
+      return Object.assign({}, state, {
+        companies: companiesTemp
+    })
+  } else if(action.type==="editFavorite"){
+      let companiesTemp = state.companies.map(companies=>companies)
+      companiesTemp[action.index].favorite = action.status
+      return Object.assign({}, state, {
+        companies: companiesTemp
+    })
+  }  else if(action.type==="renderUpdate"){
     console.log('in renderupdate')
     let companyCount = state.companyCount - 1
     console.log(companyCount)

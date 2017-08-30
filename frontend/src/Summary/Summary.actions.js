@@ -52,6 +52,15 @@ function updated(){
 function statusUpdate(index, status){
   return{type: "editStatus", index:index, status:status};
 }
+
+function watchUpdate(index, status){
+  return{type: "editWatch", index:index, status:status};
+}
+
+function favoriteUpdate(index, status){
+  return{type: "editFavorite", index:index, status:status};
+}
+
 export function deleteContact(idx){
   console.log('in deleteContact')
   let asyncAction = function(dispatch){
@@ -90,6 +99,53 @@ export function statusChange(status, index, companyID){
       dataType: 'JSON',
       contentType: 'application/json'
     }).then(data => dispatch(statusUpdate(index, status)))
+    .catch(resp => dispatch(targetError(resp)))
+  };
+  return asyncAction
+}
+export function watchChange(status, index, companyID){
+  if(status === 'N'){
+    status = 'Y'
+  } else{
+    status = 'N'
+  }
+
+  let asyncAction = function(dispatch){
+    $.ajax({
+      url: `${BASEURL}/api/watchchange`,
+      data: JSON.stringify({
+        status: status,
+        id: companyID
+      }),
+      method: 'post',
+      dataType: 'JSON',
+      contentType: 'application/json'
+    })
+    .then(data => dispatch(watchUpdate(index, status)))
+    .catch(resp => dispatch(targetError(resp)))
+  };
+  return asyncAction
+}
+
+export function favoriteChange(status, index, companyID){
+  if(status === 'N'){
+    status = 'Y'
+  } else{
+    status = 'N'
+  }
+
+  let asyncAction = function(dispatch){
+    $.ajax({
+      url: `${BASEURL}/api/favoritechange`,
+      data: JSON.stringify({
+        status: status,
+        id: companyID
+      }),
+      method: 'post',
+      dataType: 'JSON',
+      contentType: 'application/json'
+    })
+    .then(data => dispatch(favoriteUpdate(index, status)))
     .catch(resp => dispatch(targetError(resp)))
   };
   return asyncAction

@@ -95,6 +95,26 @@ app.post('/api/statuschange', (req, resp, next) => {
   .catch(next);
 })
 
+app.post('/api/watchchange', (req, resp, next) => {
+  let id = req.body.id;
+  let status = req.body.status;
+  db.none(`UPDATE companyinfo
+    SET watch = $1
+    WHERE id = $2`, [status, id])
+  .then(page => resp.json("no error"))
+  .catch(next);
+})
+
+app.post('/api/favoritechange', (req, resp, next) => {
+  let id = req.body.id;
+  let status = req.body.status;
+  db.none(`UPDATE companyinfo
+    SET favorite = $1
+    WHERE id = $2`, [status, id])
+  .then(page => resp.json("no error"))
+  .catch(next);
+})
+
 app.get('/api/getcompanies', (req, resp, next) => {
   var data = {}
   db.any('SELECT * from companyinfo ORDER BY UPPER(name) ASC;')

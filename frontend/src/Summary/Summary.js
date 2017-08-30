@@ -27,6 +27,48 @@ class Summary extends React.Component {
 
   render() {
 
+
+    let filterbutton = ''
+    let filteroptions = ''
+    // if(this.props.summaryInfo.fil === false){
+      filterbutton = <button className="SummaryFilter">Show Filter Options</button>
+    // }
+      filteroptions =
+      <div className="FilterOptionContainer">
+        <tr>
+           <td>Profit (2016):</td>
+           <td> <input type="number" placeholder="min"/></td>
+          <td><input type="number" placeholder="max"/></td>
+        </tr>
+        <tr>
+           <td>Employee:</td>
+           <td><input type="number" placeholder="min"/></td>
+          <td><input type="number" placeholder="max"/></td>
+        </tr>
+        Watch:<select value={this.props.summaryInfo.filterWatch} onChange={event=>this.props.filterWatch(event.target.value)}>
+          <option value="any">any</option>
+          <option value="Y">Y</option>
+          <option value="N">N</option>
+        </select>
+        Favorite:<select value={this.props.summaryInfo.filterFavorite} onChange={event=>this.props.filterFavorite(event.target.value)}>
+          <option value="any">any</option>
+          <option value="Y">Y</option>
+          <option value="N">N</option>
+        </select>
+        Status:<select value={this.props.summaryInfo.filterStatus} onChange={event=>this.props.filterStatus(event.target.value)}>
+          <option value="any">any</option>
+          <option value="researching">Researching</option>
+          <option value="pending approval">Pending Approval</option>
+          <option value="approved">Approved</option>
+          <option value="declined">Declined</option>
+        </select>
+      </div>
+
+
+
+
+
+
     if (this.props.summaryInfo.companies.length !== this.props.summaryInfo.companyCount){
       this.props.getTargets2()
     }
@@ -36,8 +78,9 @@ class Summary extends React.Component {
         console.log(this.props.summaryInfo.companies);
         companies = this.props.summaryInfo.companies.map((companyInfo,idx) =>
           <tr key={companyInfo.id}>
+            <td><button onClick={(event)=>{this.props.watchChange(companyInfo.watch,idx, companyInfo.id);}}>{companyInfo.watch}</button></td>
             <td>{companyInfo.name}</td>
-            <td>{companyInfo.favorite}</td>
+            <td><button onClick={(event)=>{this.props.favoriteChange(companyInfo.favorite,idx, companyInfo.id);}}>{companyInfo.favorite}</button></td>
             <td>{companyInfo.lastgrossprofit}</td>
             <td>{companyInfo.employee}</td>
             <td>
@@ -95,12 +138,16 @@ class Summary extends React.Component {
     return (
       <div>
         <h1>Company Summary Page</h1>
+        {filterbutton}
+        {filteroptions}
         <table id="company_table">
           <tbody>
             <tr>
+              <th>W</th>
               <th>Name</th>
               <th>Favorite</th>
-              <th>Profit</th>
+
+              <th>Profit(2016)</th>
               <th>Employee</th>
               <th>Status</th>
               <th>Contacts</th>

@@ -104,3 +104,20 @@ ul.nav:after {
   height: 300px;
   margin: 0 10px 0 10px;
 }
+
+.SummaryFilter{
+  width: 90%;
+  height: 30px;
+  margin: 0 5% 10px 5%;
+  border: 1px solid black;
+}
+
+.FilterOptionContainer{
+  width: 90%;
+  height: 200px;
+  margin: -9px 5% 10px 5%;
+  background-color: lightgray;
+  border: 1px solid black;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
