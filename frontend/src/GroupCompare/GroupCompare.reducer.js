@@ -20,6 +20,10 @@ export default function reducer(state = INITIAL_STATE, action) {
     return Object.assign({}, state, {
       graph: action.data
     })
+  } else if(action.type==="changeFilter"){
+    return Object.assign({}, state, {
+      filtered: action.data
+    })
   }
   return state;
 }

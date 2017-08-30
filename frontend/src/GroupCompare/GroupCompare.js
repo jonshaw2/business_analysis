@@ -11,15 +11,14 @@ import ReactFC from 'react-fusioncharts';
 //initialize charts
 charts(FusionCharts)
 
-//react-linechart
-import LineChart from 'react-linechart';
-// import '../node_modules/react-linechart/dist/styles.css';
-
 class GroupCompare extends React.Component {
   componentDidMount(){
     this.props.getList(this.props.summaryInfo.companyFilter, this.props.summaryInfo.companies)
   }
   render() {
+
+
+
 
     let companyData = this.props.GroupCompare.companyList
     let filterCompanyData = this.props.GroupCompare.filterCompanyList
@@ -72,7 +71,7 @@ class GroupCompare extends React.Component {
     //last year profit graph
     if(this.props.GroupCompare.graph === "lastyearprofit"){
 
-      var info = []
+      let info = []
       for(let i = 0; i<data.length; i++){
         info.push({label: data[i].name, value: data[i].lastgrossprofit})
       }
@@ -88,15 +87,15 @@ class GroupCompare extends React.Component {
                   <ReactFC
                   type="Column2D"
                   renderAt="compareGraph"
-                  width= "100%"
-                  height= "100%"
+                  width="100%"
+                  height="100%"
                   className="fc-column2d"  // ReactJS attribute-name for DOM classes
                   dataFormat="JSON"
                   dataSource={chartData}/>
                 </div>
     } else if(this.props.GroupCompare.graph === "totalassets"){
       //total assets graph
-      var info = []
+      let info = []
       for(let i = 0; i<data.length; i++){
         info.push({label: data[i].name, value: data[i].totalassets})
       }
@@ -111,15 +110,40 @@ class GroupCompare extends React.Component {
                   <ReactFC
                   type="Column2D"
                   renderAt="compareGraph"
-                  width= "100%"
-                  height= "100%"
+                  width="100%"
+                  height="100%"
                   className="fc-column2d"  // ReactJS attribute-name for DOM classes
                   dataFormat="JSON"
                   dataSource={chartData}/>
                 </div>
     } else if(this.props.GroupCompare.graph==="quarter"){
+      //total assets graph
+      let quarterdata = ['firstquarterprofit','secondquarterprofit','thirdquarterprofit','fourthquarterprofit']
+      let info = []
+      for(let j = 0; j<4; j++){
+        for(let i = 0; i<data.length; i++){
+          info.push({label: data[i].name, value: data[i].financeInfo[quarterdata[j]]})
+        }
+        info.push({label: '', value: 0})
+      }
 
-
+      let chartData = {
+        chart: {
+          caption: "Quarterly Profit",
+          subCaption: ""
+        },
+        data: info
+      };
+      graph =    <div className="GraphBox">
+                  <ReactFC
+                  type="Column2D"
+                  renderAt="compareGraph"
+                  width="100%"
+                  height="100%"
+                  className="fc-column2d"  // ReactJS attribute-name for DOM classes
+                  dataFormat="JSON"
+                  dataSource={chartData}/>
+                </div>
     }
 
 
@@ -129,8 +153,8 @@ class GroupCompare extends React.Component {
         <div id="compareContainer">
           <div id="compareListContainer">
             <div id="compareListButton">
-              <button>Filered</button>
-              <button>Not Filtered</button>
+              <button onClick={(event)=>{this.props.changeFilter(true)}}>Filered</button>
+              <button onClick={(event)=>{this.props.changeFilter(false)}}>Not Filtered</button>
             </div>
             <div id="compareListEntry">
               {companyList}
@@ -138,7 +162,7 @@ class GroupCompare extends React.Component {
 
           </div>
           <div id="graphContainer">
-            <div id="graphOption">
+            <div id="graphOption" className="graph-btn-group">
               <button onClick={(event)=>{this.props.changeGraph("lastyearprofit")}}>Last Year Profit</button>
               <button onClick={(event)=>{this.props.changeGraph("totalassets")}}>Assets</button>
               <button onClick={(event)=>{this.props.changeGraph("quarter")}}>Quarterly Profit</button>
