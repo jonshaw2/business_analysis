@@ -244,6 +244,7 @@ class Summary extends React.Component {
     return (
       <div>
         <h1>Company Summary Page</h1>
+        <button onClick={(event)=>{this.props.redirectCompare()}}>Comparison Summary</button>
         {filterbutton}
         {filteroptions}
         <table id="company_table">

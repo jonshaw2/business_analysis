@@ -1,3 +1,7 @@
+*{
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 50px;
@@ -132,4 +136,44 @@ ul.nav:after {
   width: 200px;
   border: 1px solid black;
   text-align: center;
+}
+
+#compareContainer{
+  width: 90%;
+  margin: 0 5% 0 5%;
+  height: 500px;
+  border: 1px solid black;
+}
+#compareListContainer{
+  width: 30%;
+  float:left;
+  height: 500px;
+  background-color: lightgray;
+  border: 1px solid black;
+}
+#compareListButton button{
+ width: 50%;
+ height: 50px;
+ border-radius: none;
+}
+#compareListEntry{
+
+}
+
+#graphOption{
+  width: 70%;
+  height: 50px;
+  float: left;
+}
+#graphOption button{
+  width: 33.33%;
+  height: 50px;
+  border-radius: none;
+}
+
+#compareGraph{
+  width: 70%;
+  height: 450px;
+  background-color: pink;
+  float: left;
 }

@@ -65,6 +65,10 @@ function watchUpdate(index, status){
 function favoriteUpdate(index, status){
   return{type: "editFavorite", index:index, status:status};
 }
+export function redirectCompare(){
+  hashHistory.push('/summary/groupcompare');
+  return{type: "nothing"};
+}
 
 export function deleteContact(idx){
   let asyncAction = function(dispatch){

@@ -51,7 +51,6 @@ class AppLayout extends React.Component {
         <ul className="nav">
           <li><IndexLink to="/" activeClassName="active">Home</IndexLink></li>
           <li><Link to="/summary" activeClassName="active">Summary</Link></li>
-          <li><Link to="/groupcompare" activeClassName="active">Hello</Link></li>
           <li><Link to="/createtarget" activeClassName="active">Create Target</Link></li>
         </ul>
         {this.props.children}
@@ -65,7 +64,7 @@ ReactDOM.render(
     <Router history={hashHistory}>
       <Route path="/" component={AppLayout}>
         <IndexRoute component={HomeContainer}/>
-        <Route path="/groupcompare" component={GroupCompareContainer}/>
+        <Route path="/summary/groupcompare" component={GroupCompareContainer}/>
         <Route path="/summary" component={SummaryContainer}/>
         <Route path="/createtarget" component={CreateTargetContainer}/>
         <Route path="/edittarget" component={EditTargetContainer}/>
