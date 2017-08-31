@@ -43,7 +43,7 @@ class SingleSummary extends React.Component {
     }
 
     return (
-      <div>
+      <div id="singleSummaryCanvas">
         <h1>{this.props.SingleSummary.companies.name}</h1>
         <div className="SingleSummaryContainer">
           <div className="InformationBox">

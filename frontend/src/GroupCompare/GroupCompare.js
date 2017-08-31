@@ -22,6 +22,29 @@ class GroupCompare extends React.Component {
 
     let companyData = this.props.GroupCompare.companyList
     let filterCompanyData = this.props.GroupCompare.filterCompanyList
+
+    let tempCompanyData=[]
+    let tempFilterCompanyData=[]
+
+    if(companyData.length>0){
+      for(let i = 0; i<companyData.length;i++){
+        if(companyData[i].watch === 'Y'){
+          tempCompanyData.push(companyData[i])
+        }
+      }
+      companyData = tempCompanyData
+    }
+
+    if(filterCompanyData.length>0){
+      for(let j=0; j<filterCompanyData.length;j++){
+        if(filterCompanyData[j].watch === 'Y'){
+          tempFilterCompanyData.push(filterCompanyData[j])
+        }
+      }
+      filterCompanyData = tempFilterCompanyData
+    }
+
+
     let companyList = ''
     let graph=''
     let data = []
@@ -148,7 +171,7 @@ class GroupCompare extends React.Component {
 
 
     return (
-      <div>
+      <div id="GroupCompareCanvas">
         <button onClick={(event)=>{this.props.backButton()}}>Back</button>
         <div id="compareContainer">
           <div id="compareListContainer">

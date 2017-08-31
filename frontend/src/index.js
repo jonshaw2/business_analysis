@@ -47,7 +47,7 @@ const store = Redux.createStore(
 class AppLayout extends React.Component {
   render() {
     return (
-      <div>
+      <div id="linkcanvas">
         <ul className="nav">
           <li><IndexLink to="/" activeClassName="active">Home</IndexLink></li>
           <li><Link to="/summary" activeClassName="active">Summary</Link></li>

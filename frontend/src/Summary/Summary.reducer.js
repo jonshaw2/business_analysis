@@ -26,6 +26,10 @@ export default function reducer(state = INITIAL_STATE, action) {
       companyCount: companycount,
       companyFilter: action.companyFilter
     })
+  } else if(action.type==="filterToggle"){
+    return Object.assign({}, state, {
+      fil: action.data
+    })
   } else if(action.type==="editProfitMin"){
     return Object.assign({}, state, {
       profitMin: action.status,

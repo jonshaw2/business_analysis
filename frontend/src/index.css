@@ -7,6 +7,20 @@ body {
   padding: 50px;
   font-family: sans-serif;
 
+  background-color: black;
+  background-image: url("img/pexels-photo2.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
 }
 
 ul.nav {
@@ -42,6 +56,7 @@ ul.nav:after {
 
 #create_company{
   padding: 3vw 15vw 3vw 15vw;
+  background-color: white;
 }
 
 #create_company label{
@@ -123,6 +138,7 @@ ul.nav:after {
 }
 
 .FilterOptionContainer{
+  padding: 15px;
   width: 90%;
   height: 200px;
   margin: -9px 5% 10px 5%;
@@ -136,6 +152,22 @@ ul.nav:after {
   text-align: center;
 }
 
+.FilterOptionContainer select{
+  padding-right: 10px;
+}
+
+.FilterOptionContainer table, th, td{
+  border: none;
+  padding: 1px 2px 1px 0
+}
+
+#filterSelect{
+  margin: 5px 0 5px 0;
+}
+
+#filterSelect select{
+  margin: 0 0 0 5px;
+}
 
 
 .nameFilterInput input{
@@ -191,4 +223,57 @@ ul.nav:after {
   font-family: Arial, sans-serif;
   border-bottom:none;
   background-color: none;
+}
+
+#GroupCompareCanvas{
+  background-color: white;
+  height: 800px;
+  width: 100%;
+}
+
+#home_text{
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 300;
+  font-size: 2.5vw;
+  color:white;
+  text-align: center;
+  display: block;
+  padding-top: 10vw;
+
+}
+
+#summaryCanvas{
+  background-color: white;
+  width: 100%;
+  min-height: 800px;
+  height: auto;
+  padding: 15px;
+}
+
+#summaryCanvas h1{
+  padding: 10px;
+}
+
+#summaryTableCanvas table tr td{
+  padding: 0 15px 0 15px;
+  border: 1px solid black;
+}
+
+#linkcanvas ul{
+  background-color: white;
+  padding: 15px;
+}
+
+#singleSummaryCanvas{
+  padding: 15px;
+  background-color: white;
+  min-height: 800px;
+  height: auto;
+}
+
+#comparisonDirectButton{
+  padding: 5px;
+  margin: 10px;
+  border-radius: 5px;
+  font-size: 15px;
 }

@@ -110,6 +110,10 @@ export function statusChange(status, index, companyID){
   };
   return asyncAction
 }
+export function filterToggle(data){
+  return{type: 'filterToggle', data:data}
+}
+
 export function watchChange(status, index, companyID){
   if(status === 'N'){
     status = 'Y'

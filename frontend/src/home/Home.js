@@ -5,8 +5,8 @@ import * as actions from './Home.actions';
 class Home extends React.Component {
   render() {
     return (
-      <div>
-        <h1>Welcome to this site!</h1>
+      <div id="home_text">
+        <h1>Online Business Data Analysis Assistance Tool!</h1>
       </div>
     );
   }

@@ -37,9 +37,11 @@ class Summary extends React.Component {
 
     let filterbutton = ''
     let filteroptions = ''
-    // if(this.props.summaryInfo.fil === false){
-      filterbutton = <button className="SummaryFilter">Show Filter Options</button>
-    // }
+    if(this.props.summaryInfo.fil === false){
+      filterbutton = <button onClick={()=>this.props.filterToggle(true)}className="SummaryFilter">Show Filter Options</button>
+    } else{
+      filterbutton = <button onClick={()=>this.props.filterToggle(false)}className="SummaryFilter">Hid Filter Options</button>
+
       filteroptions =
       <div className="FilterOptionContainer">
         <div className="nameFilterInput">
@@ -111,54 +113,62 @@ class Summary extends React.Component {
             </tr>
           </tbody>
         </table>
-        Watch:<select value={this.props.summaryInfo.filterWatch} onChange={event=>this.props.filterWatch(
-          event.target.value,
-          this.props.summaryInfo.profitMin,
-          this.props.summaryInfo.profitMax,
-          this.props.summaryInfo.employeeMin,
-          this.props.summaryInfo.employeeMax,
-          this.props.summaryInfo.filterName,
-          this.props.summaryInfo.filterWatch,
-          this.props.summaryInfo.filterStatus,
-          this.props.summaryInfo.filterFavorite,
-          this.props.summaryInfo.companies)}>
-          <option value="any">any</option>
-          <option value="Y">Y</option>
-          <option value="N">N</option>
-        </select>
-        Favorite:<select value={this.props.summaryInfo.filterFavorite} onChange={event=>this.props.filterFavorite(
-          event.target.value,
-          this.props.summaryInfo.profitMin,
-          this.props.summaryInfo.profitMax,
-          this.props.summaryInfo.employeeMin,
-          this.props.summaryInfo.employeeMax,
-          this.props.summaryInfo.filterName,
-          this.props.summaryInfo.filterWatch,
-          this.props.summaryInfo.filterStatus,
-          this.props.summaryInfo.filterFavorite,
-          this.props.summaryInfo.companies)}>
-          <option value="any">any</option>
-          <option value="Y">Y</option>
-          <option value="N">N</option>
-        </select>
-        Status:<select value={this.props.summaryInfo.filterStatus} onChange={event=>this.props.filterStatus(
-          event.target.value,
-          this.props.summaryInfo.profitMin,
-          this.props.summaryInfo.profitMax,
-          this.props.summaryInfo.employeeMin,
-          this.props.summaryInfo.employeeMax,
-          this.props.summaryInfo.filterName,
-          this.props.summaryInfo.filterWatch,
-          this.props.summaryInfo.filterStatus,
-          this.props.summaryInfo.filterFavorite,
-          this.props.summaryInfo.companies)}>
-          <option value="any">any</option>
-          <option value="researching">Researching</option>
-          <option value="pending approval">Pending Approval</option>
-          <option value="approved">Approved</option>
-          <option value="declined">Declined</option>
-        </select>
+        <div id="filterSelect">
+          Watch:<select value={this.props.summaryInfo.filterWatch} onChange={event=>this.props.filterWatch(
+            event.target.value,
+            this.props.summaryInfo.profitMin,
+            this.props.summaryInfo.profitMax,
+            this.props.summaryInfo.employeeMin,
+            this.props.summaryInfo.employeeMax,
+            this.props.summaryInfo.filterName,
+            this.props.summaryInfo.filterWatch,
+            this.props.summaryInfo.filterStatus,
+            this.props.summaryInfo.filterFavorite,
+            this.props.summaryInfo.companies)}>
+            <option value="any">any</option>
+            <option value="Y">Y</option>
+            <option value="N">N</option>
+          </select>
+        </div>
+        <div id="filterSelect">
+          Favorite:<select value={this.props.summaryInfo.filterFavorite} onChange={event=>this.props.filterFavorite(
+            event.target.value,
+            this.props.summaryInfo.profitMin,
+            this.props.summaryInfo.profitMax,
+            this.props.summaryInfo.employeeMin,
+            this.props.summaryInfo.employeeMax,
+            this.props.summaryInfo.filterName,
+            this.props.summaryInfo.filterWatch,
+            this.props.summaryInfo.filterStatus,
+            this.props.summaryInfo.filterFavorite,
+            this.props.summaryInfo.companies)}>
+            <option value="any">any</option>
+            <option value="Y">Y</option>
+            <option value="N">N</option>
+          </select>
+        </div>
+        <div id="filterSelect">
+          Status:<select value={this.props.summaryInfo.filterStatus} onChange={event=>this.props.filterStatus(
+            event.target.value,
+            this.props.summaryInfo.profitMin,
+            this.props.summaryInfo.profitMax,
+            this.props.summaryInfo.employeeMin,
+            this.props.summaryInfo.employeeMax,
+            this.props.summaryInfo.filterName,
+            this.props.summaryInfo.filterWatch,
+            this.props.summaryInfo.filterStatus,
+            this.props.summaryInfo.filterFavorite,
+            this.props.summaryInfo.companies)}>
+            <option value="any">any</option>
+            <option value="researching">Researching</option>
+            <option value="pending approval">Pending Approval</option>
+            <option value="approved">Approved</option>
+            <option value="declined">Declined</option>
+          </select>
+        </div>
       </div>
+    }
+
 
 
 
@@ -242,29 +252,31 @@ class Summary extends React.Component {
 
 
     return (
-      <div>
+      <div id="summaryCanvas">
         <h1>Company Summary Page</h1>
-        <button onClick={(event)=>{this.props.redirectCompare()}}>Comparison Summary</button>
+        <button id="comparisonDirectButton" onClick={(event)=>{this.props.redirectCompare()}}>Comparison Summary</button>
         {filterbutton}
         {filteroptions}
-        <table id="company_table">
-          <tbody>
-            <tr>
-              <th>W</th>
-              <th>Name</th>
-              <th>Favorite</th>
+        <div id="summaryTableCanvas">
+          <table id="company_table">
+            <tbody>
+              <tr>
+                <th>W</th>
+                <th>Name</th>
+                <th>Favorite</th>
 
-              <th>Profit(2016)</th>
-              <th>Employee</th>
-              <th>Status</th>
-              <th>Contacts</th>
-              <th>Detailed Info</th>
-              <th>Edit</th>
-              <th>Delete</th>
-            </tr>
-              {companies}
-          </tbody>
-        </table>
+                <th>Profit(2016)</th>
+                <th>Employee</th>
+                <th>Status</th>
+                <th>Contacts</th>
+                <th>Detailed Info</th>
+                <th>Edit</th>
+                <th>Delete</th>
+              </tr>
+                {companies}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }
