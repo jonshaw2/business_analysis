@@ -172,7 +172,7 @@ class GroupCompare extends React.Component {
 
     return (
       <div id="GroupCompareCanvas">
-        <button onClick={(event)=>{this.props.backButton()}}>Back</button>
+        <button className="backButton" onClick={(event)=>{this.props.backButton()}}>Back</button>
         <div id="compareContainer">
           <div id="compareListContainer">
             <div id="compareListButton">

@@ -3,7 +3,7 @@ import { hashHistory } from "react-router";
 import BASEURL from "../baseurl";
 
 function targetInfo(data, profitMin, profitMax, employeeMin, employeeMax, filterName,filterWatch, filterStatus, filterFavorite){
-  console.log(filterName);
+
   let tempData = data.companyInfo;
   for (let i = 0; i< tempData.length; i++){
     tempData[i].contact = [];
@@ -39,7 +39,7 @@ function targetInfo2(data, profitMin, profitMax, employeeMin, employeeMax, filte
       }
     }
   }
-  console.log(filterName,'targetInfo2');
+
   let companyFilter = updateFilter(profitMin, profitMax, employeeMin, employeeMax, filterName, filterWatch, filterStatus, filterFavorite, tempData)
 
   return{type: 'initializeTables2', payload: tempData, companyFilter: companyFilter};
@@ -137,6 +137,11 @@ export function watchChange(status, index, companyID){
   };
   return asyncAction
 }
+export function resetFilter(companies){
+  let companyFilter = updateFilter('', '', '', '', '', 'any', 'any', 'any', companies)
+
+  return{type: "resetFilter", companyFilter: companyFilter};
+};
 
 export function profitminChange(status, profitMin, profitMax, employeeMin, employeeMax, filterName,filterWatch, filterStatus, filterFavorite, companies){
   let companyFilter = updateFilter(status, profitMax, employeeMin, employeeMax, filterName, filterWatch, filterStatus, filterFavorite, companies)
@@ -174,9 +179,7 @@ export function filterName(status, profitMin, profitMax, employeeMin, employeeMa
 }
 
 function updateFilter(profitMin, profitMax, employeeMin, employeeMax, filterName, filterWatch, filterStatus, filterFavorite, companies){
-  console.log(employeeMax, 'max')
-  console.log(companies);
-  console.log('in filter',filterName);
+
   //filtering profit min
   if(profitMin !== ''){
     let tempArray = []
@@ -251,7 +254,7 @@ function updateFilter(profitMin, profitMax, employeeMin, employeeMax, filterName
       if(companies[i].name.toUpperCase().indexOf(filterName.toUpperCase()) !== -1)
       tempArray.push(companies[i])
     }
-    console.log(companies);
+
     companies = tempArray;
 
   }
@@ -313,7 +316,7 @@ export function getTargets2(profitMin, profitMax, employeeMin, employeeMax, filt
   let employeeMinss = employeeMin;
   let employeeMaxss = employeeMax;
   let filterNamess = filterName;
-  console.log(filterNamess, 'in getTargets2')
+
   let filterWatchss = filterWatch;
   let filterStatusss = filterStatus;
   let filterFavoritess = filterFavorite;

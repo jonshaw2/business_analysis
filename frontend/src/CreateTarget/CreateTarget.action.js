@@ -1,9 +1,10 @@
 import $ from "jquery";
-//import { hashHistory } from "react-router";
+import { hashHistory } from "react-router";
 import BASEURL from "../baseurl";
 
 function targetRedirect(data){
   console.log(data);
+  hashHistory.push('/summary');
   return{
     type: "createTarget"
   }

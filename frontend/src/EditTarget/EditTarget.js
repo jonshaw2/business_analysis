@@ -96,7 +96,7 @@ class EditTarget extends React.Component {
         <br/><br/><br/>
 
         <button onClick={()=>this.props.editTarget(info)}>Submit</button>
-
+        <button className="backButton" onClick={(event)=>{this.props.backButton()}}>Back</button>
         </div>
 
       </div>

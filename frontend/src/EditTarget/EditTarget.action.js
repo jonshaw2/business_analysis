@@ -1,9 +1,9 @@
 import $ from "jquery";
-//import { hashHistory } from "react-router";
+import { hashHistory } from "react-router";
 import BASEURL from "../baseurl";
 
 function targetRedirect(data){
-  console.log(data);
+  hashHistory.push('/summary');
   return{
     type: "editTarget"
   }
@@ -18,6 +18,11 @@ export function initialize(payload){
     type: "initialize",
     payload: payload
   }
+}
+
+export function backButton(){
+  hashHistory.push('/summary');
+  return {type: "nothing"}
 }
 
 export function editTarget(info){

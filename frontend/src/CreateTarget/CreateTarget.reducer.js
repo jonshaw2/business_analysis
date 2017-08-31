@@ -128,7 +128,28 @@ export default function reducer(state = INITIAL_STATE, action) {
         contact: contactTemp
     });
   } else if (action.type==="createTarget"){
-    return state;
+
+    return Object.assign({}, state,{
+      companyname:'',
+      industry:'',
+      grossprofit:0,
+      totalassets:0,
+      employee:0,
+      website:'',
+      notes:'',
+
+      firstquarterprofit:0,
+      secondquarterprofit:0,
+      thirdquarterprofit:0,
+      fourthquarterprofit:0,
+
+      contact:[{
+        name: '',
+        phone: '',
+        email: '',
+        title: ''
+      }]
+    })
   }
   return state;
 }

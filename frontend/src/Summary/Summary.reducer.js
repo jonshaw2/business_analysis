@@ -26,6 +26,20 @@ export default function reducer(state = INITIAL_STATE, action) {
       companyCount: companycount,
       companyFilter: action.companyFilter
     })
+  } else if(action.type==="resetFilter"){
+    console.log('in reset filter reducer')
+    return Object.assign({}, state, {
+      filterWatch: 'any',
+      filterStatus: 'any',
+      filterFavorite: 'any',
+      profitMin: '',
+      profitMax: '',
+      employeeMin: '',
+      employeeMax: '',
+      filterName: '',
+      companyFilter: action.companyFilter
+
+    })
   } else if(action.type==="filterToggle"){
     return Object.assign({}, state, {
       fil: action.data

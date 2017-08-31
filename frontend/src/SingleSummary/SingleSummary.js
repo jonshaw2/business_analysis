@@ -20,9 +20,6 @@ class SingleSummary extends React.Component {
     var chartInfo = []
     let chartData = {}
 
-    console.log('company id',this.props.SingleSummary.companies.id)
-    console.log(chartInfo);
-    console.log(this.props.SingleSummary);
     if (this.props.SingleSummary.companies !== '' ){
       if (this.props.SingleSummary.companies.id === parseInt(this.props.params.id, 10)){
         chartData = {
@@ -44,6 +41,7 @@ class SingleSummary extends React.Component {
 
     return (
       <div id="singleSummaryCanvas">
+        <button className="backButton" onClick={(event)=>{this.props.backButton()}}>Back</button>
         <h1>{this.props.SingleSummary.companies.name}</h1>
         <div className="SingleSummaryContainer">
           <div className="InformationBox">

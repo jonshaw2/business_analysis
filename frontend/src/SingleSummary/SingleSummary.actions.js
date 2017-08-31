@@ -1,5 +1,5 @@
 import $ from 'jquery';
-// import { hashHistory} from 'react-router';
+import { hashHistory} from 'react-router';
 import BASEURL from '../baseurl';
 
 function targetInfo(data){
@@ -22,6 +22,11 @@ function targetInfo(data){
 function targetError(resp){
   let error = (resp && resp.responseJSON && resp.responseJSON.message) || 'Something went wrong!';
   console.log(error);
+}
+
+export function backButton(){
+  hashHistory.push('/summary');
+  return {type: "nothing"}
 }
 
 export function getSummary(id){

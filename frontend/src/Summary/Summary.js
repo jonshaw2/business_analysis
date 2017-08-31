@@ -166,6 +166,9 @@ class Summary extends React.Component {
             <option value="declined">Declined</option>
           </select>
         </div>
+        <div>
+          <button onClick={(event)=>{this.props.resetFilter(this.props.summaryInfo.companies);}}>Reset</button>
+        </div>
       </div>
     }
 
@@ -212,9 +215,11 @@ class Summary extends React.Component {
               this.state.isShowingModal &&
               <ModalContainer onClose={this.handleClose}>
                 <ModalDialog onClose={this.handleClose}>
-                  <h1>Contacts</h1>
+                  <span><h1>{this.props.summaryInfo.companies[this.props.summaryInfo.viewIndex].name}</h1></span>
+                  <h2>Contacts</h2>
                   {this.props.summaryInfo.companies[this.props.summaryInfo.viewIndex].contact.map((info, idx2) =>
                     <div key={idx2}>
+
                     <span className="cellCount">Contact {idx2+1}</span><br/>
                     <span>Name: {info.contact_name}</span><br/>
                     <span>Phone: {info.contact_phone}</span><br/>
