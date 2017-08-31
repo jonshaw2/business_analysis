@@ -33,7 +33,7 @@ class CreateTarget extends React.Component {
          onChange={event=>this.props.industryChange(event.target.value)}/>
 
         <label>Company Website:</label>
-        <input type="text" value={this.props.website} onChange={event=>this.props.websiteChange(event.target.value)}/>
+        <input type="url" value={this.props.website} onChange={event=>this.props.websiteChange(event.target.value)}/>
 
         <label>Gross Profit (2016): </label>
         <input type="number" value={this.props.grossprofit} onChange={event=>this.props.grossProfitChange(event.target.value)}/>
@@ -71,10 +71,10 @@ class CreateTarget extends React.Component {
             <input type="text" value={contact.name} onChange={(event)=>this.props.contactNameChange(event.target.value,idx)}/>
 
             <label>Phone:</label>
-            <input value={contact.phone} onChange={event=>this.props.contactPhoneChange(event.target.value,idx)}/>
+            <input type="tel" value={contact.phone} onChange={event=>this.props.contactPhoneChange(event.target.value,idx)}/>
 
             <label>Email:</label>
-            <input type="text" value={contact.email} onChange={event=>this.props.contactEmailChange(event.target.value,idx)}/>
+            <input type="email" value={contact.email}  onChange={event=>this.props.contactEmailChange(event.target.value,idx)}/>
 
             <label>Title:</label>
             <input type="text" value={contact.title} onChange={event=>this.props.contactTitleChange(event.target.value,idx)}/>

@@ -6,7 +6,7 @@ class Home extends React.Component {
   render() {
     return (
       <div id="home_text">
-        <h1>Online Business Data Analysis Assistance Tool!</h1>
+        <h1>Online Business Data Analysis Assistance Tool</h1>
       </div>
     );
   }

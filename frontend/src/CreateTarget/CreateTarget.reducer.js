@@ -1,30 +1,22 @@
 const INITIAL_STATE = {
-  companyname:'google',
-  industry:'manufacturing',
-  grossprofit:100,
-  totalassets:200,
-  employee:300,
-  website:'http://google.com',
-  notes:'something other information about this company',
+  companyname:'',
+  industry:'',
+  grossprofit:0,
+  totalassets:0,
+  employee:0,
+  website:'',
+  notes:'',
 
-  firstquarterprofit:100,
-  secondquarterprofit:200,
-  thirdquarterprofit:300,
-  fourthquarterprofit:400,
+  firstquarterprofit:0,
+  secondquarterprofit:0,
+  thirdquarterprofit:0,
+  fourthquarterprofit:0,
 
   contact:[{
-    name: 'bob dough',
-    phone: '123-456-7890',
-    email: 'bob.dough@gmail.com',
-    title: 'hobo'},
-    {
-      name: 'steve',
-      phone: '098-765-4321',
-      email: 'something',
-      title: 'hard working one'
-
-
-  }]
+    name: '',
+    phone: '',
+    email: '',
+    title: ''}]
   // put properties you need here
 };
 
