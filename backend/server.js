@@ -4,7 +4,16 @@ const cors = require('cors');
 var Promise = require('bluebird');
 const pgp = require('pg-promise')();
 const config = require('./config/dbconfig')
-const db = pgp(config);
+// const db = pgp(config);
+
+const db = pgp({
+  host: 'localhost',
+  port: 5432,
+  database: 'business_analysis',
+  user: 'postgres',
+
+});
+
 
 const app = express();
 
