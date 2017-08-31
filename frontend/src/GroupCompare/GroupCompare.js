@@ -74,9 +74,6 @@ class GroupCompare extends React.Component {
         companyList = companyData.map((companyInfo, idx) =>
           <div>
             {companyInfo.name}
-            <button>
-              Watch On
-            </button>
           </div>
       )
 
